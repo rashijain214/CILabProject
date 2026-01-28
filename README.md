@@ -27,6 +27,6 @@ Freestyle and Multibranch Pipeline jobs.
 | Unit tests             | CalculatorTest.java |
 | Build tool             | pom.xml             |
 | Multibranch logic      | Jenkinsfile         |
-| Freestyle batch step   | build.bat           |
+| Freestyle batch step   | build.sh            |
 | Docker                 | Dockerfile          |
 | Documentation          | README.md           |
