@@ -1,1 +1,42 @@
-nk
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Build & Test - Main') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Test Only - Feature') {
+            when {
+                branch pattern: "feature/.*", comparator: "REGEXP"
+            }
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Release Validation') {
+            when {
+                branch pattern: "release/.*", comparator: "REGEXP"
+            }
+            steps {
+                sh 'mvn test'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit 'target/surefire-reports/*.xml'
+        }
+        success {
+            echo 'Build successful'
+        }
+    }
+}

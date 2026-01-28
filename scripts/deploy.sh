@@ -1,1 +1,2 @@
-kkn
+#!/bin/bash
+echo "Deploying application..."
